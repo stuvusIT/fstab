@@ -1,0 +1,34 @@
+# {{ ansible_managed }}
+{% set fmtstr='%-50s %-20s %-8s %-35s %s' -%}
+{{ fmtstr|format('# <filesystem>', '<mountpoint>', '<type>', '<options>', '<dump/pass>') }}
+{% set fmtstr='%-50s %-20s %-8s %-35s %s %s' -%}
+
+{%- if fstab_auto_root %}
+	{%- for mountpoint in ansible_mounts %}
+		{%- if mountpoint.mount=="/" %}
+			{%- set root={'options': mountpoint.options, 'source': mountpoint.device, 'type': mountpoint.fstype} %}
+			{{- fmtstr|format(root.source, '/', root.type, fstab_auto_root_options|default([root.options])|join(','),
+			    fstab_auto_root_dump|int, fstab_auto_root_check|int)}}
+		{%- endif %}
+	{%- endfor %}
+{% endif %}
+
+{% if fstab_tmpfs %}
+	{%- if fstab_tmpfs_max_size is defined %}
+		{{- fmtstr|format('tmpfs', '/tmp', 'tmpfs', fstab_tmpfs_options|union(['size='+fstab_tmpfs_max_size])|join(','), 0, 0) }}
+	{%- else %}
+		{{- fmtstr|format('tmpfs', '/tmp', 'tmpfs', fstab_tmpfs_options|join(','), 0, 0) }}
+	{%- endif %}
+{% endif %}
+
+{% if fstab_sysfs %}
+	{{- fmtstr|format('sysfs', '/sys', 'sysfs', fstab_sysfs_options|join(','), 0, 0) }}
+{% endif %}
+{% if fstab_proc %}
+	{{- fmtstr|format('proc', '/proc', 'proc', fstab_proc_options|join(','), 0, 0) }}
+{% endif %}
+
+{% for mountpoint in fstab_additional_mounts %}
+	{{- fmtstr|format(mountpoint.source, mountpoint.target, mountpoint.type,
+	    mountpoint.options|default(['defaults'])|join(','), mountpoint.dump|default(false)|int, mountpoint.fsck|default(2)) }}
+{% endfor %}

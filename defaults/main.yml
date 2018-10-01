@@ -1,0 +1,15 @@
+---
+fstab_auto_root: true
+fstab_auto_root_check: true
+fstab_auto_root_dump: true
+fstab_tmpfs: true
+fstab_tmpfs_options:
+  - nodev
+  - nosuid
+fstab_sysfs: true
+fstab_sysfs_options:
+  - defaults
+fstab_proc: true
+fstab_proc_options:
+  - defaults
+fstab_additional_mounts: []
