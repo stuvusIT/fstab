@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: Markus Mroch
+  description: Generate a proper nice fstab
+  company: stuvus (https://stuvus.uni-stuttgart.de)
+
+  license: CC-BY-SA
+
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: Ubuntu
+    - name: Debian
+
+  galaxy_tags:
+    - fstab
+    - debian
+    - ubuntu
+    - filesystem
+
+dependencies: []

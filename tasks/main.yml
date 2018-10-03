@@ -1,0 +1,8 @@
+---
+- name: Install fstab
+  template:
+    dest: /etc/fstab
+    group: root
+    owner: root
+    mode: 0644
+    src: fstab.j2
