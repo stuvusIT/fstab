@@ -6,8 +6,7 @@
 {%- if fstab_auto_root %}
 	{%- for mountpoint in ansible_mounts %}
 		{%- if mountpoint.mount=="/" %}
-			{%- set root={'options': mountpoint.options, 'source': mountpoint.device, 'type': mountpoint.fstype} %}
-			{{- fmtstr|format(root.source, '/', root.type, fstab_auto_root_options|default([root.options])|join(','),
+			{{- fmtstr|format(mountpoint.device, '/', fstab_auto_root_type|default(mountpoint.fstype), fstab_auto_root_options|default([mountpoint.options])|join(','),
 			    fstab_auto_root_dump|int, fstab_auto_root_check|int)}}
 		{%- endif %}
 	{%- endfor %}

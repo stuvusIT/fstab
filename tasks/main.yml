@@ -6,3 +6,5 @@
     owner: root
     mode: 0644
     src: fstab.j2
+  tags:
+    - fstab
