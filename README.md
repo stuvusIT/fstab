@@ -25,7 +25,7 @@ A running linux system.
 | `fstab_proc`              | boolean                             |                `true`               | Generate a fstab entry for procfs                                                                                |
 | `fstab_proc_options`      | list of strings                     |            `['defaults']`           | procfs mount options                                                                                             |
 | `fstab_additional_mounts` | [list of dicts](#additional-mounts) |                 `[]`                | Add additional mount entries                                                                                     |
-| `fstab_reload_method`     | string                              |                `none`               | Reload method for changes in fstab, valid values are `none`(just update fstab), `reload`(performe `mount -a`)    |
+| `fstab_reload_method`     | string                              |                `none`               | Reload method for changes in fstab, valid values are `none`(just update fstab), `reload`(perform `mount -a`)     |
 
 <a id="__required">¹</a> Variable is not required unless no default is given or other specified
 
