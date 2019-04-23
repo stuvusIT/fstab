@@ -1,0 +1,4 @@
+- name: Mount all fstab entries `mount -a`
+  shell: mount -a
+  listen: fstab_update#
+  when: fstab_reload_method == "remount"

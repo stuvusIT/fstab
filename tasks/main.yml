@@ -6,5 +6,6 @@
     owner: root
     mode: 0644
     src: fstab.j2
+  notify: fstab_update
   tags:
     - fstab
