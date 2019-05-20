@@ -13,3 +13,5 @@ fstab_proc: true
 fstab_proc_options:
   - defaults
 fstab_additional_mounts: []
+fstab_reload: false
+fstab_reload_method: mount
