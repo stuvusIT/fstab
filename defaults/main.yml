@@ -15,3 +15,4 @@ fstab_proc_options:
 fstab_additional_mounts: []
 fstab_reload: false
 fstab_reload_method: mount
+fstab_create_additional_dirs: false

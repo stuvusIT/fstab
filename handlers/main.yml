@@ -1,3 +1,12 @@
+- name: Create additional mount directories
+  file:
+    path: "{{ item.target }}"
+    state: directory
+    recurse: true
+  loop: "{{ fstab_additional_mounts }}"
+  when: fstab_create_additional_dirs
+  listen: fstab_update
+
 - name: Mount all fstab entries using `mount -a`
   shell: mount -a
   listen: fstab_update
