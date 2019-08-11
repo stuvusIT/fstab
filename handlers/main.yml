@@ -2,7 +2,6 @@
   file:
     path: "{{ item.target }}"
     state: directory
-    recurse: true
   loop: "{{ fstab_additional_mounts }}"
   when: fstab_create_additional_dirs
   listen: fstab_update
