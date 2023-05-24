@@ -10,5 +10,3 @@
   shell: mount -a
   listen: fstab_update
   when: fstab_reload and fstab_reload_method == "mount"
-  args:
-    warn: false
